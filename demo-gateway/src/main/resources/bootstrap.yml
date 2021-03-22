@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+      config:
+        server-addr: 127.0.0.1:8848
+        namespace: 030e0335-e9a3-4d35-8cd9-cdf5def12b57
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: payment-router
+          uri: lb://payment-service
+          predicates:
+            - Path=/pay/**
